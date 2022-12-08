@@ -1,13 +1,47 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import React from "react";
+import { CookiesProvider } from "react-cookie";
+import ReactDOM from "react-dom/client";
+import { HelmetProvider } from "react-helmet-async";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import Layout from "./components/Layout";
+import Loader from "./components/Loader";
+import "./index.css";
+import Dashboard from "./pages/Dashboard";
+import Login from "./pages/Login";
+import Setting from "./pages/Setting";
+import reportWebVitals from "./reportWebVitals";
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
+const routes = createBrowserRouter([
+  {
+    path: "/login",
+    element: <Login />,
+  },
+  {
+    path: "/",
+    element: <Layout />,
+    children: [
+      {
+        path: "",
+        element: <Dashboard />,
+      },
+      {
+        path: "/setting",
+        element: <Setting />,
+      },
+    ],
+  },
+]);
+
+const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <App />
+    <CookiesProvider>
+      <HelmetProvider>
+        <Loader>
+          <RouterProvider router={routes} />
+        </Loader>
+      </HelmetProvider>
+    </CookiesProvider>
   </React.StrictMode>
 );
 
