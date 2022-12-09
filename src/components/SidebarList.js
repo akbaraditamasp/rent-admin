@@ -14,6 +14,9 @@ export default function SidebarList({
           ? "bg-primary text-white"
           : "bg-white text-gray-600 hover:border-gray-300")
       }
+      onClick={(e) => {
+        if (active) e.preventDefault();
+      }}
       {...props}
     >
       <Icon className="w-8 text-center" />

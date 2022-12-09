@@ -4,12 +4,12 @@ const TextInput = forwardRef(
   ({ containerClassName, className, label, left, ...props }, ref) => {
     return (
       <div className={containerClassName}>
-        {label && <label>{label}</label>}
+        {label && <label className="text-sm">{label}</label>}
         <div className="h-12 rounded border w-full flex items-center relative">
           <input
             ref={ref}
             className={
-              "absolute top-0 left-0 w-full h-full py-2 " +
+              "absolute text-sm top-0 left-0 w-full h-full py-2 " +
               (left ? "pl-10 pr-3" : "px-3") +
               " rounded " +
               className

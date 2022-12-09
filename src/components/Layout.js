@@ -1,12 +1,12 @@
 import { Fragment, useEffect, useRef, useState } from "react";
+import { useCookies } from "react-cookie";
 import { Helmet } from "react-helmet-async";
 import { FaBuilding } from "react-icons/fa";
-import { FiHome, FiLogOut, FiSettings } from "react-icons/fi";
+import { FiAnchor, FiHome, FiLogOut, FiSettings } from "react-icons/fi";
 import { Link, Outlet, useLocation, useNavigate } from "react-router-dom";
-import SidebarList from "./SidebarList";
-import { useCookies } from "react-cookie";
-import withReactContent from "sweetalert2-react-content";
 import Swal from "sweetalert2";
+import withReactContent from "sweetalert2-react-content";
+import SidebarList from "./SidebarList";
 
 const MySwal = withReactContent(Swal);
 
@@ -49,6 +49,12 @@ export default function Layout() {
       activeMark: "dashboard",
     },
     {
+      label: "Gedung",
+      icon: FiAnchor,
+      path: "/building",
+      activeMark: "building",
+    },
+    {
       label: "Pengaturan",
       icon: FiSettings,
       path: "/setting",
@@ -86,8 +92,9 @@ export default function Layout() {
       <Helmet>
         <title>{pageTitle}</title>
       </Helmet>
-      <div className="w-full overflow-hidden flex min-h-screen bg-white">
-        <div className="lg:w-64 xl:w-72 bg-white flex-shrink-0">
+      <div className="w-full overflow-x-hidden flex min-h-screen bg-white">
+        <div className="lg:w-64 xl:w-72" />
+        <div className="lg:w-64 xl:w-72 bg-white flex-shrink-0 fixed top-0 left-0 h-screen z-20">
           <div className="montserrat font-bold text-center flex items-center text-2xl p-5 px-8 h-24">
             <FaBuilding className="mr-2" />
             RentHall
@@ -106,8 +113,9 @@ export default function Layout() {
             ))}
           </div>
         </div>
-        <div className="flex flex-col relative flex-1">
-          <div className="h-24 flex pt-5 px-8 sticky top-0 left-0 flex-shrink-0">
+        <div className="flex flex-col flex-1">
+          <div className="h-24"></div>
+          <div className="h-24 z-10 flex pt-5 px-8 fixed top-0 left-0 right-0 lg:ml-64 xl:ml-72 bg-white">
             <div className="flex-1">
               <div className="text-3xl font-bold montserrat">{pageTitle}</div>
               <ul className="text-gray-600 text-sm mt-1">

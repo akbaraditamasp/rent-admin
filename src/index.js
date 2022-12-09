@@ -6,6 +6,8 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Layout from "./components/Layout";
 import Loader from "./components/Loader";
 import "./index.css";
+import Building from "./pages/Building";
+import ComposeBuilding from "./pages/ComposeBuilding";
 import Dashboard from "./pages/Dashboard";
 import Login from "./pages/Login";
 import Setting from "./pages/Setting";
@@ -27,6 +29,14 @@ const routes = createBrowserRouter([
       {
         path: "/setting",
         element: <Setting />,
+      },
+      {
+        path: "/building",
+        element: <Building />,
+      },
+      {
+        path: "/building/add",
+        element: <ComposeBuilding />,
       },
     ],
   },

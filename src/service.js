@@ -1,9 +1,10 @@
 import axios from "axios";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
 import { LoadingContext } from "./components/Loader";
+import { useCookies } from "react-cookie";
 
 const _service = axios.create({
   baseURL: process.env.REACT_APP_BASE_URL + "/api",
@@ -14,6 +15,17 @@ const MySwal = withReactContent(Swal);
 const useService = ({ with401 = true }) => {
   const { setLoading, _cancel, loading } = useContext(LoadingContext);
   const navigate = useNavigate();
+  const [cookies] = useCookies(["token"]);
+
+  useEffect(() => {
+    if (cookies.token) {
+      _service.defaults.headers.common[
+        "Authorization"
+      ] = `Bearer ${cookies.token}`;
+    } else {
+      _service.defaults.headers.common["Authorization"] = null;
+    }
+  }, [cookies]);
 
   return {
     loading,
